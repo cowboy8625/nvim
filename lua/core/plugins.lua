@@ -12,16 +12,21 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
+
+  -- use {
+  --   '~/Documents/NeovimPlugins/twitch_watch.nvim',
+  --   requires = 'rcarriga/nvim-notify'
+  -- }
+
   use {
-    '~/Documents/NeovimPlugins/twitch_watch.nvim',
-    requires = 'rcarriga/nvim-notify'
+    "rcarriga/nvim-dap-ui",
+    requires = {"mfussenegger/nvim-dap"}
   }
   use {
     'Exafunction/codeium.vim',
     config = function ()
       -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true }) vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
       vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
       vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
   end
@@ -83,6 +88,7 @@ return require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
 
   -- Rust
+  use 'neovim/nvim-lspconfig'
   use 'simrat39/rust-tools.nvim'
 
   -- Debugging
