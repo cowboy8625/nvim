@@ -10,14 +10,15 @@ endif
 syn keyword snowKeyword if else then
 syn keyword snowKeyword true false
 syn keyword snowKeyword or and let in
-syn keyword snowKeyword fn type
+syn keyword snowKeyword fn type enum
 
 syn keyword snowFunction println print
 
 hi link snowKeyword Keyword
-hi link snowFunction Function
+" hi link snowFunction Function
 
-syn match snowFn "\(fn\_s\+\)\@<=\<[A-z0-9]\+\>"
+syn match snowEnum "\(enum\_s\+\)\@<=\<[A-z0-9]\+\>"
+syn match snowFn "^[a-zA-Z][a-zA-z0-9]* "
 
 syn keyword snowTodo contained TODO FIXME XXX NOTE
 syn match snowComment "--.*$" contains=snowTodo
@@ -58,8 +59,9 @@ syn match snowIdentifier contains=snowIdentifierPrime "\%([^[:cntrl:][:space:][:
 
 hi def link snowIdentifierPrime   snowIdentifier
 hi def link snowIdentifier        Identifier
-hi def link snowFunction          Function
+" hi def link snowFunction          Function
 hi def link snowFn                Function
+hi def link snowEnum              Type
 hi def link snowTodo              Todo
 hi def link snowComment           Comment
 hi def link snowCommentBlock      Comment
