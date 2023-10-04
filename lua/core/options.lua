@@ -25,7 +25,7 @@ vim.cmd [[ autocmd BufRead,BufNewFile *.a set filetype=a ]]
 vim.cmd [[ autocmd BufRead,BufNewFile *.tera set filetype=html ]]
 
 -- hide tmux bar when in vim
-vim.cmd [[ autocmd VimEnter,VimLeave * silent !tmux set status ]]
+-- vim.cmd [[ autocmd VimEnter,VimLeave * silent !tmux set status ]]
 
 
 
