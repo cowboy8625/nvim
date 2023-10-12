@@ -23,16 +23,17 @@ return require('lazy').setup({
 
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = {"mfussenegger/nvim-dap"}
+    dependencies = { "mfussenegger/nvim-dap" }
   },
   {
     'Exafunction/codeium.vim',
-    config = function ()
+    config = function()
       -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true }) vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
       vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
       vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-  end
+    end
   },
   {
     "NeogitOrg/neogit",
@@ -58,8 +59,8 @@ return require('lazy').setup({
   {
     'ojroques/nvim-lspfuzzy',
     dependencies = {
-      {'junegunn/fzf'},
-      {'junegunn/fzf.vim'},  -- to enable preview (optional)
+      { 'junegunn/fzf' },
+      { 'junegunn/fzf.vim' }, -- to enable preview (optional)
     },
   },
 
@@ -88,11 +89,10 @@ return require('lazy').setup({
     'neovim/nvim-lspconfig',
   },
 
-  'mhartington/formatter.nvim',
   {
-	  'nvim-telescope/telescope.nvim',
-	  tag = '0.1.0',
-	  dependencies = { {'nvim-lua/plenary.nvim'} }
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.0',
+    dependencies = { { 'nvim-lua/plenary.nvim' } }
   },
 
   'numToStr/Comment.nvim',
@@ -122,21 +122,21 @@ return require('lazy').setup({
 
   {
     'johnfrankmorgan/whitespace.nvim',
-    config = function ()
-        require('whitespace-nvim').setup({
-            -- configuration options and their defaults
+    config = function()
+      require('whitespace-nvim').setup({
+        -- configuration options and their defaults
 
-            -- `highlight` configures which highlight is used to display
-            -- trailing whitespace
-            highlight = 'DiffDelete',
+        -- `highlight` configures which highlight is used to display
+        -- trailing whitespace
+        highlight = 'DiffDelete',
 
-            -- `ignored_filetypes` configures which filetypes to ignore when
-            -- displaying trailing whitespace
-            ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'help' },
-        })
+        -- `ignored_filetypes` configures which filetypes to ignore when
+        -- displaying trailing whitespace
+        ignored_filetypes = { 'TelescopePrompt', 'Trouble', 'help' },
+      })
 
-        -- remove trailing whitespace with a keybinding
-        vim.keymap.set('n', '<Leader>t', require('whitespace-nvim').trim)
+      -- remove trailing whitespace with a keybinding
+      vim.keymap.set('n', '<Leader>t', require('whitespace-nvim').trim)
     end
   },
 })
