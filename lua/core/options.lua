@@ -1,5 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 -- enable lua filetype
 vim.g.do_filetype_lua = 1;
 
