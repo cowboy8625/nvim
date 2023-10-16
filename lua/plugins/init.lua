@@ -16,13 +16,19 @@ return {
 	"L3MON4D3/LuaSnip",
 	"saadparwaiz1/cmp_luasnip",
 	"rafamadriz/friendly-snippets",
-	"stevearc/dressing.nvim",
+	{
+		"stevearc/dressing.nvim",
+		opts = {},
+	},
 	{
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 	},
-	"numToStr/Comment.nvim",
+	{
+		config = true,
+		"numToStr/Comment.nvim",
+	},
 	-- Rust
 	"neovim/nvim-lspconfig",
 	-- Debugging

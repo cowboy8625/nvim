@@ -1,32 +1,15 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
+	"nvim-telescope/telescope.nvim",
 	tag = "0.1.0",
 	dependencies = { { "nvim-lua/plenary.nvim" } },
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			-- A list of parser names, or "all"
-			ensure_installed = {
-				"c",
-				"lua",
-				"rust",
-				"ruby",
-				"vim",
-				"javascript",
-				"typescript",
-				"tsx",
-				"css",
-				"html",
-				"ocaml",
-				"haskell",
-				"sql",
-			},
+		require("telescope").setup()
+		local builtin = require("telescope.builtin")
 
-			-- Install parsers synchronously (only applied to `ensure_installed`)
-			sync_install = false,
-			auto_install = true,
-			highlight = {
-				enable = true,
-			},
-		})
+		vim.keymap.set("n", "<c-p>", builtin.find_files, {})
+		vim.keymap.set("n", "<Space><Space>", builtin.oldfiles, {})
+		vim.keymap.set("n", "<Space>fg", builtin.live_grep, {})
+		vim.keymap.set("n", "<Space>fh", builtin.help_tags, {})
+		vim.keymap.set("n", "<Space>ff", builtin.grep_string, {})
 	end,
 }
