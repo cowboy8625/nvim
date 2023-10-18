@@ -3,7 +3,9 @@ return {
 	tag = "0.1.0",
 	dependencies = { { "nvim-lua/plenary.nvim" } },
 	config = function()
-		require("telescope").setup({
+		local telescope = require("telescope")
+		local has_previewer = require("telescope.config").values.file_previewer
+		telescope.setup({
 			defaults = {
 				-- layout_strategy = "horizontal", -- Set your desired layout globally
 				layout_strategy = "vertical",
