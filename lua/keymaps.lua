@@ -1,4 +1,4 @@
-function remove_numbers()
+local function remove_numbers()
 	vim.wo.number = not vim.wo.number
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end
@@ -7,6 +7,9 @@ end
 --   vim.wo.number = true
 --   vim.wo.relativenumber = not vim.wo.relativenumber
 -- end
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Navigate vim panes better
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")

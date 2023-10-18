@@ -3,7 +3,18 @@ return {
 	tag = "0.1.0",
 	dependencies = { { "nvim-lua/plenary.nvim" } },
 	config = function()
-		require("telescope").setup()
+		require("telescope").setup({
+			defaults = {
+				-- layout_strategy = "horizontal", -- Set your desired layout globally
+				layout_strategy = "vertical",
+				layout_config = {
+					prompt_position = "top",
+					horizontal = { width = 0.9, height = 0.9 },
+					vertical = { height = 0.9, width = 0.9 },
+					preview_height = 0.7,
+				},
+			},
+		})
 		local builtin = require("telescope.builtin")
 
 		vim.keymap.set("n", "<c-p>", builtin.find_files, {})
