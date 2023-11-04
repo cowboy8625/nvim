@@ -38,7 +38,6 @@ return {
 	"neovim/nvim-lspconfig",
 	-- Debugging
 	"nvim-lua/plenary.nvim",
-	"mfussenegger/nvim-dap",
 	"krady21/compiler-explorer.nvim",
 	"folke/neodev.nvim",
 }

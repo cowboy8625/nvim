@@ -9,6 +9,13 @@ return {
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
 
+		-- vim.g.nvim_tree_special_files = {
+		-- 	snow = {
+		-- 		icon = " ", -- Replace 'customfiletype' with the actual file type
+		-- 		color = "#b2b190", -- Replace with the desired color (optional)
+		-- 	},
+		-- }
+
 		require("nvim-tree").setup({
 			view = {
 				adaptive_size = true,
