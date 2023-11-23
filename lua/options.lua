@@ -35,7 +35,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- remove command bar
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 
 vim.diagnostic.config({
 	float = { border = "rounded" },

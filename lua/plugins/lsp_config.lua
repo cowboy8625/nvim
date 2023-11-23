@@ -138,6 +138,57 @@ return {
 				},
 			},
 		})
+		require("lspconfig").eslint.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				JavaScripts = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/javascript")] = true,
+							[vim.fn.stdpath("config") .. "/js"] = true,
+						},
+					},
+				},
+			},
+		})
+		require("lspconfig").swift_mesonls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				JavaScripts = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/swift")] = true,
+							[vim.fn.stdpath("config") .. "/swift"] = true,
+						},
+					},
+				},
+			},
+		})
+		require("lspconfig").zls.setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+			settings = {
+				JavaScripts = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/zig")] = true,
+							[vim.fn.stdpath("config") .. "/zig"] = true,
+						},
+					},
+				},
+			},
+		})
 	end,
 }
 

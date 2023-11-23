@@ -28,6 +28,7 @@ return {
 				"vimdoc",
 				"yaml",
 				"zig",
+				"swift",
 			},
 
 			-- Install parsers synchronously (only applied to `ensure_installed`)
