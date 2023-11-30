@@ -25,6 +25,7 @@ return {
 				})
 			end,
 		},
+		lazy = true,
 	},
 	config = function()
 		-- If you want icons for diagnostic errors, you'll need to define them somewhere:
@@ -302,6 +303,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<c-n>", ":Neotree toggle<CR>")
+		vim.keymap.set("n", "<c-n>", ":Neotree reveal_file=% toggle<CR>")
 	end,
 }
