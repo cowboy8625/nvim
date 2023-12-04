@@ -303,20 +303,6 @@ return {
 			},
 		})
 
-		vim.api.nvim_create_user_command("ToggleNeotree", function()
-			local current_item = vim.fn.expand("%")
-
-			if vim.fn.filereadable(current_item) == 1 or vim.fn.isdirectory(current_item) == 1 then
-				-- If the current item is a file or directory
-				vim.cmd(":Neotree reveal_file=" .. current_item .. " toggle")
-			else
-				-- If the current item is not a file
-				vim.cmd(":Neotree toggle")
-			end
-		end, {})
-
-		vim.api.nvim_set_keymap("n", "<c-n>", ":ToggleNeotree<CR>", { noremap = true, silent = true })
-
-		-- vim.keymap.set("n", "<c-n>", ":Neotree reveal_file=% toggle<CR>")
+		vim.api.nvim_set_keymap("n", "<c-n>", ":Neotree reveal_force_cwd toggle<CR>", { noremap = true, silent = true })
 	end,
 }
