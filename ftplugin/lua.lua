@@ -1,2 +1,0 @@
--- vim.cmd [[ set makeprg=lua\ % ]]
--- vim.keymap.set('n', ';;', ':make<CR>')
