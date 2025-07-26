@@ -1,5 +1,14 @@
-require("core.options")
-require("core.keymaps")
-require("core.plugins")
-require("core.plugin_config")
-require("case_swap")
+require("better_window_line_numbers")
+require("color_scheme")
+require("find_file")
+require("floating_terminal")
+require("formating")
+require("hex")
+require("keymaps")
+require("lsp")
+require("options")
+require("status_line")
+
+-- ============================================================================
+--                               Plugins Setup
+-- ============================================================================
