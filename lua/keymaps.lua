@@ -52,6 +52,8 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 -- Quick config editing
 vim.keymap.set("n", "<leader>rc", ":e ~/.config/simple_neovim_config.lua<CR>", { desc = "Edit config" })
 
+vim.keymap.set("n", "<leader>ff", ":FindFileFloatingInput<CR>", { desc = "Find file" })
+
 -- ============================================================================
 -- USEFUL FUNCTIONS
 -- ============================================================================

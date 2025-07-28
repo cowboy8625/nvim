@@ -90,7 +90,6 @@ local function FloatingTerminal()
   })
 end
 
--- Key mappings
 vim.keymap.set("n", "<C-_>", FloatingTerminal, { noremap = true, silent = true, desc = "Toggle floating terminal" })
 vim.keymap.set("t", "<C-_>", FloatingTerminal, { noremap = true, silent = true, desc = "Toggle floating terminal" })
 vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })

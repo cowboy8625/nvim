@@ -159,6 +159,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "lua",
   callback = setup_lua_lsp,
 })
+
 -- ================================================================================================
 --                                    LSP Keymaps
 -- ================================================================================================
@@ -166,10 +167,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- LSP keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
-    -- vim.diagnostic.config({
-    --   float = { border = "rounded" },
-    -- })
-
     local opts = { buffer = event.buf }
 
     -- Navigation

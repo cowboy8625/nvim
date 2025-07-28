@@ -1,10 +1,11 @@
 --=================================================================================================
 --                             Find File Command
 --=================================================================================================
-
 local function find_file(opts)
-  local term = opts.args
-  local handle = io.popen('find . -name "' .. term .. '"')
+  local term = opts.args:lower()
+
+  -- get all files tracked by ripgrep
+  local handle = io.popen("rg --files")
   if not handle then
     return
   end
@@ -14,13 +15,16 @@ local function find_file(opts)
 
   local files = {}
   for line in string.gmatch(result, "[^\r\n]+") do
-    table.insert(files, { filename = line })
+    -- basic fuzzy: case-insensitive substring match
+    if line:lower():find(term, 1, true) then
+      table.insert(files, { filename = line })
+    end
   end
 
   if #files == 0 then
     print("No files found")
   elseif #files == 1 then
-    vim.cmd("edit " .. files[1].filename)
+    vim.cmd("edit " .. vim.fn.fnameescape(files[1].filename))
   else
     vim.fn.setqflist({}, " ", { title = "Files", items = files })
     vim.cmd("copen")
@@ -42,6 +46,7 @@ vim.api.nvim_create_autocmd("FileType", {
       if float_win and vim.api.nvim_win_is_valid(float_win) then
         vim.api.nvim_win_close(float_win, true)
       end
+
       float_win = nil
     end
 
@@ -54,7 +59,6 @@ vim.api.nvim_create_autocmd("FileType", {
       local row = math.floor((vim.o.lines - height) / 2) - 1
       local col_pos = math.floor((vim.o.columns - width) / 2)
 
-      -- Create floating window
       float_win = vim.api.nvim_open_win(bufnr, true, {
         relative = "editor",
         row = row,
@@ -65,7 +69,6 @@ vim.api.nvim_create_autocmd("FileType", {
         border = "rounded",
       })
 
-      -- Set buffer options to readonly
       vim.api.nvim_set_option_value("modifiable", false, { buf = bufnr })
       vim.api.nvim_set_option_value("buflisted", false, { buf = bufnr })
       vim.api.nvim_set_option_value(
@@ -75,7 +78,6 @@ vim.api.nvim_create_autocmd("FileType", {
       )
       vim.api.nvim_set_option_value("buftype", "nofile", { buf = bufnr })
 
-      -- Clamp cursor position safely
       local line_count = vim.api.nvim_buf_line_count(bufnr)
       if lnum > line_count then
         lnum = line_count
@@ -93,27 +95,22 @@ vim.api.nvim_create_autocmd("FileType", {
       end
       vim.api.nvim_win_set_cursor(float_win, { lnum, col })
 
-      -- Focus the floating window
       vim.api.nvim_set_current_win(float_win)
 
-      -- Map <Enter> to open file in main window and close quickfix + preview
       vim.keymap.set("n", "<CR>", function()
-        -- Close quickfix window
         for _, win in ipairs(vim.fn.getwininfo()) do
           if win.quickfix == 1 then
             vim.api.nvim_win_close(win.winid, true)
           end
         end
 
-        -- Close floating preview window
         close_float()
 
-        -- Open file normally in main window, at correct line and col
         vim.api.nvim_command("edit " .. vim.fn.fnameescape(vim.api.nvim_buf_get_name(bufnr)))
+        vim.api.nvim_set_option_value("modifiable", true, { buf = bufnr })
         vim.api.nvim_win_set_cursor(0, { lnum, col })
       end, { buffer = bufnr, noremap = true, silent = true })
 
-      -- Optional: close floating on <Esc> or `q`
       vim.keymap.set("n", "<Esc>", close_float, { buffer = bufnr, noremap = true, silent = true })
       vim.keymap.set("n", "q", function()
         close_float()
@@ -176,6 +173,7 @@ local function floating_input(callback)
       if vim.api.nvim_win_is_valid(win) then
         vim.api.nvim_win_close(win, true)
       end
+      vim.api.nvim_buf_delete(input_buf, { force = true })
     end,
   })
 
@@ -211,11 +209,13 @@ local function floating_input(callback)
   end, { buffer = input_buf, noremap = true })
 end
 
-vim.keymap.set("n", "<leader>ff", function()
+vim.api.nvim_create_user_command("FindFileFloatingInput", function()
   floating_input(function(file_name)
     if not file_name then
       return
     end
     find_file({ args = file_name })
   end)
-end, { desc = "Find file" })
+end, {
+  nargs = 0,
+})

@@ -9,7 +9,6 @@ local function focus_mode_toggle()
   vim.wo.relativenumber = not vim.wo.relativenumber
   vim.opt.signcolumn = (vim.wo.number and "yes") or "no"
 
-  -- toggle statusline
   if vim.o.laststatus > 0 then
     vim.o.laststatus = 0
   else
@@ -17,7 +16,6 @@ local function focus_mode_toggle()
   end
   vim.o.cmdheight = vim.o.cmdheight == 1 and 0 or 1
 
-  -- Toggle LSP
   vim.diagnostic.config({
     virtual_text = not vim.diagnostic.config().virtual_text,
   })
