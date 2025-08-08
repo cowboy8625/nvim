@@ -8,6 +8,7 @@ require("keymaps")
 require("lsp")
 require("options")
 require("status_line")
+require("package_manager")
 
 -- ============================================================================
 --                               Plugins Setup
